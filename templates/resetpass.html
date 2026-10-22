@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Buy stock
+
+{% endblock %}
+
+{% block main %}
+
+    <form action="/reset_pass" method="post">
+        <input type="password" name="new_pass" placeholder="New password">
+        <input type="password" name="confirmation" placeholder="New password (again)">
+        <input type="submit" value="Ok">
+    </form>
+    <hr>
+    <div class="alert alert-light" role="alert">{{ alert }}</div>
+    
+{% endblock %}

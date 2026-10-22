@@ -1,0 +1,14 @@
+# Local runtime and private configuration
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+flask_session/
+instance/
+.env
+.env.*
+!.env.example
+*.db-journal
+*.db-wal
+*.db-shm
+# The tracked finance.db is an empty schema snapshot.

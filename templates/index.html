@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Hello {{ name }}!
+
+{% endblock %}
+
+{% block main %}
+
+    <!-- Current cash -->
+    <input type="text" readonly value="Available cash: {{ cash | usd }}">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-start">Name</th>
+                <td></td>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td class="text-start">{{ stock.symbol }}</td>
+                    <td class="text-start">{{ stock.name }}</td>
+                    <td>
+                        <form action="/buy" method="post" style="display: inline;">
+                            <input type="hidden" name="index" value="{{ stock.symbol }}">
+                            <input type="submit" value="Buy more">
+                        </form>
+                        <form action="/sell" method="post" style="display: inline;">
+                            <input type="hidden" name="index" value="{{ stock.symbol }}">
+                            <input type="submit" value="Sell">
+                        </form>
+                    </td>
+                    <td class="text-end">{{ stock.shares }}</td>
+                    <td class="text-end">{{ stock.price | usd }}</td>
+                    <td class="text-end">{{ stock.total | usd }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="5">Total price</th>
+                <td class="text-end">{{ oo | usd }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <a href="/addmoney" class="link-dark">Add more cash?</a>
+
+{% endblock %}

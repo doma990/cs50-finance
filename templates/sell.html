@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Sell stocks
+
+{% endblock %}
+
+{% block main %}
+
+    {% if symbol %}
+
+        <form action="/sell" method="post">
+            <select name="symbol" class="form-select mx-auto w-auto">
+                <option selected value="{{ symbol }}">{{ symbol }}</option>
+            </select>
+            <br>
+            <input type="number" min="1" name="shares" placeholder="Shares" autofocus>
+            <br><hr>
+            <button class="btn btn-primary" type="submit">Sell</button>
+        </form>
+
+    {% else %}
+
+        <form action="/sell" method="post">
+            <!-- Drop menu which shows stocks current user owns -->
+            <select name="symbol" class="form-select mx-auto w-auto">
+                <option disabled selected>Select symbol</option>
+                {% for symbol in symbols %}
+                    <option value="{{ symbol.symbol }}">{{ symbol.symbol }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <!-- Number of shares -->
+            <input type="number" name="shares" min="1" placeholder="Shares" autocomplete="off" class="form-control mx-auto w-auto">
+            <br><hr>
+            <!-- Submit button -->
+            <button class="btn btn-primary" type="submit">Sell</button>
+        </form>
+
+    {% endif %}
+
+{% endblock %}

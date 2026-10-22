@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Buy stock
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="addmoney">
+        <form action="/addmoney" method="post">
+            <br>
+            <input type="number" name="cash" placeholder="Cash" min="1" autofocus class="form-control mx-auto w-auto"><br>
+            <input type="submit" value="Add Money" class="btn btn-primary">
+        </form>
+        <hr>
+        <div class="alert alert-light" role="alert">{{ alert }}</div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Buy stock
+
+{% endblock %}
+
+{% block main %}
+
+    {% if symbol %}
+
+        <form action="/buy" method="post">
+            <input required type="text" name="symbol" placeholder="Symbol" value="{{ symbol }}" class="form-control mx-auto w-auto"><br>
+            <input required type="number" min="1" name="shares" placeholder="Shares" autofocus  autocomplete="off" class="form-control mx-auto w-auto"><hr>
+            <button class="btn btn-primary" type="submit">Buy</button>
+        </form>
+
+    {% else %}
+
+        <form action="/buy" method="post">
+            <input required type="text" name="symbol" placeholder="Symbol" class="form-control mx-auto w-auto"><br>
+            <input required type="number" min="1" name="shares" placeholder="Shares"  autocomplete="off" class="form-control mx-auto w-auto"><hr>
+            <button class="btn btn-primary" type="submit">Buy</button>
+        </form>
+
+    {% endif %}
+
+{% endblock %}
